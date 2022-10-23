@@ -5,8 +5,9 @@ import { useCounterStore } from "@/stores/counter";
 import { reactive } from 'vue'
 
 import usePopover from "@/composables/useAntDesignVue/popover";
+import useSpin from "@/composables/useAntDesignVue/spin";
 
-
+/** */
 const { popper_init: popper_com1 } = usePopover({
   // visible: false,
   // attrs: {
@@ -16,7 +17,16 @@ const { popper_init: popper_com1 } = usePopover({
   // },
 })
 
-
+/** */
+const {spin_init: spin_com} = useSpin({
+  // attrs: {
+  //   spinning: true,
+  //   tip: 'Loading...',
+  //   size: 'small',
+  //   class: '',
+  //   style: '',
+  // }
+})
 
 
 defineProps<{
@@ -40,6 +50,12 @@ const input_aa: IInput = reactive({
 </script>
 
 <template>
+
+  <div>
+    <span style="margin-right: 2px;">spin</span>
+    <span><a-spin v-bind="spin_com.attrs"/></span>
+    <button @click="spin_com!.attrs!.spinning = !spin_com!.attrs!.spinning">切換spin顯示</button>
+  </div>
 
   <div>
 

@@ -1,14 +1,14 @@
-export interface IInput<T = string>{
+export interface IInput<T = string> {
     value: T
     attrs: {
-      loading: boolean
+        loading: boolean
     }
     listeners: {
-      change: {
-        (): void
-      }
+        change: {
+            (): void
+        }
     }
-  }
+}
 
 /** */
 export interface IInputNumber {
@@ -103,7 +103,22 @@ export interface IPopover {
         /**  */
         style?: string
     }
+}
 
 
+/** loading 動畫 */
+/** 代辦清單 - useISpin */
+export interface ISpin {
+    attrs: {
+        /** */
+        spinning: boolean
+        /** 提示訊息 */
+        tip: string
+        /** */
+        size: 'default' | 'small' | 'large'
+        class: string | string[]
+        /**  */
+        style: string
+    }
 
 }
