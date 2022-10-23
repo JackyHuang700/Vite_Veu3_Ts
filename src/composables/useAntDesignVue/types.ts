@@ -107,7 +107,7 @@ export interface IPopover {
 
 
 /** loading 動畫 */
-/** 代辦清單 - useISpin */
+
 export interface ISpin {
     attrs: {
         /** */
@@ -119,6 +119,26 @@ export interface ISpin {
         class: string | string[]
         /**  */
         style: string
+    }
+
+}
+
+/** */
+/** 代辦清單 - useModal */
+export interface IModal<T = boolean> {
+    visible: T
+    attrs: {
+        class: string | string[]
+        /**  */
+        style: string
+    }
+    listeners: {
+        ok: {
+            (e: Event): void
+        }
+        cancel: {
+            (e: Event): void
+        }
     }
 
 }
