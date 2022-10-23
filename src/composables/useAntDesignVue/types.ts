@@ -1,3 +1,15 @@
+export interface IInput<T = string>{
+    value: T
+    attrs: {
+      loading: boolean
+    }
+    listeners: {
+      change: {
+        (): void
+      }
+    }
+  }
+
 /** */
 export interface IInputNumber {
     attrs: {
@@ -49,7 +61,7 @@ export interface ISwitch<T = string> {
 }
 
 /** */
-export interface IRate<T = number>{
+export interface IRate<T = number> {
     value: T
     attrs: {
         /** */
@@ -65,7 +77,7 @@ export interface IRate<T = number>{
         /** */
         focus?: {}
         /** */
-        hoverChange?: {}        
+        hoverChange?: {}
         /** */
         keydown?: {}
     }
@@ -74,17 +86,24 @@ export interface IRate<T = number>{
 
 
 /** */
-export interface IPopover{
+export interface IPopover {
+    /** v-model:visible="popper_init.visible"， 若串接，會造成 attrs.trigger 失效 */
     visible: boolean
-attrs: {
-  /** */
-  title: string
-  /** */
-  content: string
-  /** */
-  trigger: "hover"| "focus" | "click"
-}
+    attrs: {
+        /** */
+        title: string
+        /** */
+        content?: string
+        /** */
+        trigger: "hover" | "focus" | "click"
+        /** */
+        //   placement
+        /** */
+        class?: string | string[]
+        /**  */
+        style?: string
+    }
 
 
-  
+
 }

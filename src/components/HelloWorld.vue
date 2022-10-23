@@ -1,10 +1,26 @@
 <script setup lang="ts">
 
+import type { IInput } from "@/composables/useAntDesignVue/types";
 import { useCounterStore } from "@/stores/counter";
 import { reactive } from 'vue'
 
+import usePopover from "@/composables/useAntDesignVue/popover";
+
+
+const { popper_init: popper_com1 } = usePopover({
+  // visible: false,
+  // attrs: {
+  // trigger:  '',
+  // title: '標題',
+  // content: '內容',
+  // },
+})
+
+
+
+
 defineProps<{
-  msg: string  
+  msg: string
 }>()
 
 
@@ -19,30 +35,33 @@ const input_aa: IInput = reactive({
   },
 })
 
-interface IInput<T = string>{
-  value: T
-  attrs: {
-    loading: boolean
-  }
-  listeners: {
-    change: {
-      (): void
-    }
-  }
-}
+
 
 </script>
 
 <template>
+
+  <div>
+
+    <!-- v-model:visible="popper_bmo1.visible" -->
+    <a-popover v-bind="popper_com1.attrs">
+      <template #content>
+        <p>Content</p>
+        <p>Content</p>
+      </template>
+      <template #title v-if="false">
+        <span>Title</span>
+      </template>
+      <button>button</button>
+    </a-popover>
+  </div>
+
+
   <div class="greetings">
-    <a-input v-model:value="input_aa.value" 
-    
-      v-bind="{
-        ...input_aa.attrs,
-        placeholder:'Basic usage' 
-      }"
-      v-on="input_aa.listeners"
-    />
+    <a-input v-model:value="input_aa.value" v-bind="{
+      ...input_aa.attrs,
+      placeholder:'Basic usage' 
+    }" v-on="input_aa.listeners" />
 
     <h1 class="green">{{ msg }}</h1>
     <h2>
@@ -77,6 +96,7 @@ h3 {
 }
 
 @media (min-width: 1024px) {
+
   .greetings h1,
   .greetings h3 {
     text-align: left;
