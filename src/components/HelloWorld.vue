@@ -1,44 +1,85 @@
 <script setup lang="ts">
-import {  ref } from 'vue'
-import { NewType } from "../types";
+
+import { useCounterStore } from "@/stores/counter";
+import { reactive } from 'vue'
 
 defineProps<{
-  msg: string
-  data_count: NewType
+  msg: string  
 }>()
 
-const count = ref(0)
+
+const counter = useCounterStore()
+const input_aa: IInput = reactive({
+  value: 'asf',
+  attrs: {
+    loading: true
+  },
+  listeners: {
+    change: () => console.log('change')
+  },
+})
+
+interface IInput<T = string>{
+  value: T
+  attrs: {
+    loading: boolean
+  }
+  listeners: {
+    change: {
+      (): void
+    }
+  }
+}
+
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
+  <div class="greetings">
+    <a-input v-model:value="input_aa.value" 
+    
+      v-bind="{
+        ...input_aa.attrs,
+        placeholder:'Basic usage' 
+      }"
+      v-on="input_aa.listeners"
+    />
 
-  <h2 v-on:click="$props.data_count.click">asdfasdd{{ $props.data_count.value  }}</h2>
+    <h1 class="green">{{ msg }}</h1>
+    <h2>
+      <span>pinia store</span>
+      <span>{{counter.count}}</span>
 
-  <div class="card">
-    <button type="button" @click="count++">count is {{ count }}</button>
-    <p>
-      Edit
-      <code>components/HelloWorld.vue</code> to test HMR
-    </p>
+
+      <button @click="counter.increment">按我</button>
+    </h2>
+    <h3>
+      You’ve successfully created a project with
+      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
+      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
+    </h3>
   </div>
-
-  <p>
-    Check out
-    <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
-      >create-vue</a
-    >, the official Vue + Vite starter
-  </p>
-  <p>
-    Install
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
-    in your IDE for a better DX
-  </p>
-  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
 </template>
 
 <style scoped>
-.read-the-docs {
-  color: #888;
+h1 {
+  font-weight: 500;
+  font-size: 2.6rem;
+  top: -10px;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+.greetings h1,
+.greetings h3 {
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .greetings h1,
+  .greetings h3 {
+    text-align: left;
+  }
 }
 </style>
