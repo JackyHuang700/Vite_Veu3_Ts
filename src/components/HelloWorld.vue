@@ -18,7 +18,7 @@ const { popper_init: popper_com1 } = usePopover({
 })
 
 /** */
-const {spin_init: spin_com} = useSpin({
+const { spin_init: spin_com } = useSpin({
   // attrs: {
   //   spinning: true,
   //   tip: 'Loading...',
@@ -51,9 +51,23 @@ const input_aa: IInput = reactive({
 
 <template>
 
-  <div>
+  <div class="bg-[red] color-[#fff]">
+    <div class="
+      text-5xl
+      fw300
+      animate-bounce-alt
+      animate-count-infinite
+      animate-duration-1s">
+      click me
+    </div>
+  </div>
+
+
+  <div class="block">
     <span style="margin-right: 2px;">spin</span>
-    <span><a-spin v-bind="spin_com.attrs"/></span>
+    <span>
+      <a-spin v-bind="spin_com.attrs" />
+    </span>
     <button @click="spin_com!.attrs!.spinning = !spin_com!.attrs!.spinning">切換spin顯示</button>
   </div>
 
@@ -76,13 +90,13 @@ const input_aa: IInput = reactive({
   <div class="greetings">
     <a-input v-model:value="input_aa.value" v-bind="{
       ...input_aa.attrs,
-      placeholder:'Basic usage' 
+      placeholder: 'Basic usage'
     }" v-on="input_aa.listeners" />
 
     <h1 class="green">{{ msg }}</h1>
     <h2>
       <span>pinia store</span>
-      <span>{{counter.count}}</span>
+      <span>{{ counter.count }}</span>
 
 
       <button @click="counter.increment">按我</button>
